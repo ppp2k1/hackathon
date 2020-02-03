@@ -1,8 +1,9 @@
 # hackathon
 
 
-To build Docker Image 
-docker build -t <image-name:tag> .
+**To build Docker Images** 
+`gradlew.bat :buildDockerImages`
 
-To run Docker Image
-docker run --rm -p 8080:8080 <image-name:tag>
+**To run Docker Image**s
+`docker-compose up`
+
