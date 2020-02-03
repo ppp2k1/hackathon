@@ -12,3 +12,12 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+task buildDockerImage(type: Exec) {
+    description 'Build docker images'
+
+    executable  = "docker-compose.exe"
+
+    args 'build'
+
+}

@@ -1,0 +1,18 @@
+# Version of the docker-compose SPEC
+version: "3"
+
+services:
+
+  api-gateway:
+    image: graphql-gateway
+    build: ./graphql-gateway
+    # Having fixated container name will limit the number of docker to 1
+    container_name: graphql-gateway
+    ports:
+      - 8080:8080
+    networks:
+      - server-net
+
+networks:
+  server-net:
+
