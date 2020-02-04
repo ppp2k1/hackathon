@@ -1,6 +1,5 @@
 # hackathon
 
-<<<<<<< HEAD
 Order of initiaition of services:
 service-registery -> testservice -> testclient
 
@@ -26,7 +25,6 @@ To make an existing service discoverable
 3) Add RestTemplate part in case your service is consuming other service or to be lazy add it always.
 
 For API gateway there can be some differences as per reading but for other bussiness services this should be fine.
-=======
 
 **To build Docker Images** 
 `gradlew.bat :buildDockerImages`
@@ -34,4 +32,3 @@ For API gateway there can be some differences as per reading but for other bussi
 **To run Docker Image**s
 `docker-compose up`
 
->>>>>>> 95d73f05e899c60fbb0d54819b10dcd8bbfbc6d0
