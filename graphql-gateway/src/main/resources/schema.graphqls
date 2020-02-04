@@ -2,6 +2,7 @@ type Query {
     ClusterByKey(key: String): Cluster
     VserverByKey(key: String): Vserver
     VolumeByKey(key: String): Volume
+    SecurityConfigByVm(name: String): SecurityConfig
 }
 
 
@@ -20,4 +21,26 @@ type Vserver {
 type Volume {
     key: String!
     name: String!
+}
+
+type SecurityConfig {
+    name: String!
+    vmware: VmWare
+    ontap: Ontap
+}
+
+type VmWare {
+    id: String!
+    ip: String!
+    name: String!
+    firewall: Boolean
+    path: String!
+}
+
+type Ontap {
+    id: String!
+    ip: String!
+    path: String!
+    hardwareEncrypted: Boolean
+    softwareEncrypted: Boolean
 }
