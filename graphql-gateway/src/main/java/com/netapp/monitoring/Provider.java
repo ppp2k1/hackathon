@@ -44,7 +44,7 @@ public class Provider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("clusterByKey", dataFetcherFactory.getClusterByKeyDataFetcher()))
+                        .dataFetcher("ClusterByKey", dataFetcherFactory.getClusterByKeyDataFetcher()))
                 .type(newTypeWiring("Cluster")
                         .dataFetcher("vservers", dataFetcherFactory.getVserversForClusterDataFetcher()))
                 .build();
