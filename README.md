@@ -3,9 +3,11 @@
 
 **To build** 
 
-`1. gradlew.bat clean`
+`1. git clone `
 
-`2. gradlew.bat`
+`2. gradlew.bat clean`
+
+`3. gradlew.bat`
 
 **To start the images**
 `docker-compose up`
