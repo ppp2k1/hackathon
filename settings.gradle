@@ -2,5 +2,10 @@ rootProject.name = 'hackathon'
 include 'cluster-security-monitoring-service'
 include 'graphql-gateway'
 include 'service-registry'
+<<<<<<< HEAD
+include 'testservice'
+include 'testclient'
+=======
 include 'tracing-service'
 
+>>>>>>> 95d73f05e899c60fbb0d54819b10dcd8bbfbc6d0
