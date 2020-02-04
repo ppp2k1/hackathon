@@ -1,5 +1,19 @@
 # hackathon
 
+
+**To build** 
+`gradlew.bat clean`
+`gradlew.bat`
+
+**To start the images**
+`docker-compose up`
+
+**Containers and ports**
+`service-registry 6666`
+`graphql-gateway 7777`
+`configuration-service 8888`
+
+
 Order of initiaition of services:
 service-registery -> testservice -> testclient
 
@@ -26,9 +40,4 @@ To make an existing service discoverable
 
 For API gateway there can be some differences as per reading but for other bussiness services this should be fine.
 
-**To build Docker Images** 
-`gradlew.bat :buildDockerImages`
-
-**To run Docker Image**s
-`docker-compose up`
 
