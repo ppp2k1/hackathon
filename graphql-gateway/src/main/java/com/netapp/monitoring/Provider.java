@@ -47,6 +47,11 @@ public class Provider {
                         .dataFetcher("ClusterByKey", dataFetcherFactory.getClusterByKeyDataFetcher()))
                 .type(newTypeWiring("Cluster")
                         .dataFetcher("vservers", dataFetcherFactory.getVserversForClusterDataFetcher()))
+                .type(newTypeWiring("Query")
+                         .dataFetcher("SecurityConfigByVm", dataFetcherFactory.getSecurityConfigByName()))
+                .type(newTypeWiring("SecurityConfig")
+                         .dataFetcher("vmware", dataFetcherFactory.getVmWareByVmName()))
+
                 .build();
     }
 

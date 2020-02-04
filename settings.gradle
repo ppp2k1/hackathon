@@ -4,5 +4,4 @@ include 'graphql-gateway'
 include 'service-registry'
 include 'testservice'
 include 'testclient'
-include 'tracing-service'
 

@@ -2,7 +2,6 @@ plugins {
     id 'java'
 }
 
-
 sourceCompatibility = 1.8
 
 repositories {
@@ -13,7 +12,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-task buildDockerImages(type: Exec) {
+task buildImages(type: Exec) {
+
     description 'Build docker images'
 
     executable  = "docker-compose.exe"
@@ -21,3 +21,5 @@ task buildDockerImages(type: Exec) {
     args 'build'
 
 }
+
+defaultTasks 'bootJar', 'buildImages'
