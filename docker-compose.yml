@@ -5,13 +5,31 @@ services:
 
   api-gateway:
     image: graphql-gateway
-    build: ./graphql-gateway
-    # Having fixated container name will limit the number of docker to 1
+    build: ./graphql-gateway        
     container_name: graphql-gateway
     ports:
-      - 8080:8080
+      - 7777:7777
     networks:
       - server-net
+
+  configuration-service:
+    image: configuration-service
+    build: ./configuration-service        
+    container_name: configuration-service
+    ports:
+      - 8888:8888
+    networks:
+      - server-net
+
+  service-registry:
+    image: service-registry
+    build: ./service-registry
+    container_name: service-registry
+    ports:
+      - 6666:6666
+    networks:
+      - server-net
+
 
 networks:
   server-net:
