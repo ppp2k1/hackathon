@@ -2,16 +2,21 @@
 
 
 **To build** 
-`gradlew.bat clean`
-`gradlew.bat`
+
+`1. gradlew.bat clean`
+
+`2. gradlew.bat`
 
 **To start the images**
 `docker-compose up`
 
 **Containers and ports**
-`service-registry 6666`
-`graphql-gateway 7777`
-`configuration-service 8888`
+
+`1. service-registry 6666`
+
+`2. graphql-gateway 7777`
+
+`3. configuration-service 8888`
 
 
 Order of initiaition of services:
