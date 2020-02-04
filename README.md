@@ -1,4 +1,4 @@
-# hackathon
+# Security monitoring services exposed via GraphQL gateway
 
 
 **To build** 
