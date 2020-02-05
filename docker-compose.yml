@@ -38,6 +38,15 @@ services:
       - 9999:9999
     networks:
       - server-net
+      
+  zapi-service:
+    image: zapi-service
+    build: ./zapi-service
+    containe_name: zapi-service
+    ports:
+      - 5555:5555
+    networks:
+      - server-net
 
 networks:
   server-net:
