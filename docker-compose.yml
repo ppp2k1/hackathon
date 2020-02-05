@@ -42,7 +42,7 @@ services:
   zapi-service:
     image: zapi-service
     build: ./zapi-service
-    containe_name: zapi-service
+    container_name: zapi-service
     ports:
       - 5555:5555
     networks:
