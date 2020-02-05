@@ -1,3 +1,9 @@
+
+/build/
+/bin/
+/.gradle/
+
+=======
 HELP.md
 .gradle
 build/

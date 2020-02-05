@@ -1,7 +1,8 @@
-<<<<<<< HEAD
+
 /build/
 /bin/
 /.gradle/
+
 =======
 HELP.md
 .gradle
@@ -35,4 +36,3 @@ out/
 
 ### VS Code ###
 .vscode/
->>>>>>> 11da34d84980493d79353649fa168ff2aa7e9760
