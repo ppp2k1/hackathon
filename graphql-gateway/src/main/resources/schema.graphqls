@@ -38,9 +38,35 @@ type VmWare {
 }
 
 type Ontap {
-    id: String!
     ip: String!
     path: String!
-    hardwareEncrypted: Boolean
-    softwareEncrypted: Boolean
+    encrypt: Boolean
+    volumeAntivirusAttributes: AntivirusAttributes
+    volumeMirrorAttributes: MirrorAttributes
+    volumeSecurityAttributes: SecurityAttributes
+}
+
+type AntivirusAttributes {
+    onAccessPolicy: String!
+}
+
+type MirrorAttributes {
+    dataProtectionMirror: Boolean
+    loadSharingMirror: Boolean
+    moveMirror: Boolean
+    replicaVolume: Boolean
+    snapmirrorSource: String!
+    mirrorTransferInProgress: Boolean
+    redirectSnapshotId: Long
+}
+
+type SecurityAttributes {
+    style: String!
+    volumeSecurityUnixAttributes: SecurityUnixAttributes
+}
+
+type SecurityUnixAttributes {
+    groupId: String!
+    permissions: Long
+    userId: String!
 }

@@ -2,29 +2,14 @@ package com.netapp.monitoring;
 
 public class Ontap {
 
-    String id;
-    String ip;
-    String path;
-    Boolean hardwareEncrypted;
-    Boolean softwareEncrypted;
+    private String ip;
+    private String path;
+    private Boolean Encrypt;
+    private AntivirusAttributes volumeAntivirusAttributes;
+    private MirrorAttributes volumeMirrorAttributes;
+    private SecurityAttributes volumeSecurityAttributes;
 
     public Ontap() {
-    }
-
-    public Ontap(String id, String ip, String path, Boolean hardwareEncrypted, Boolean softwareEncrypted) {
-        this.id = id;
-        this.ip = ip;
-        this.path = path;
-        this.hardwareEncrypted = hardwareEncrypted;
-        this.softwareEncrypted = softwareEncrypted;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getIp() {
@@ -43,19 +28,35 @@ public class Ontap {
         this.path = path;
     }
 
-    public Boolean getHardwareEncrypted() {
-        return hardwareEncrypted;
+    public Boolean getEncrypt() {
+        return Encrypt;
     }
 
-    public void setHardwareEncrypted(Boolean hardwareEncrypted) {
-        this.hardwareEncrypted = hardwareEncrypted;
+    public void setEncrypt(Boolean encrypt) {
+        Encrypt = encrypt;
     }
 
-    public Boolean getSoftwareEncrypted() {
-        return softwareEncrypted;
+    public AntivirusAttributes getVolumeAntivirusAttributes() {
+        return volumeAntivirusAttributes;
     }
 
-    public void setSoftwareEncrypted(Boolean softwareEncrypted) {
-        this.softwareEncrypted = softwareEncrypted;
+    public void setVolumeAntivirusAttributes(AntivirusAttributes volumeAntivirusAttributes) {
+        this.volumeAntivirusAttributes = volumeAntivirusAttributes;
+    }
+
+    public MirrorAttributes getVolumeMirrorAttributes() {
+        return volumeMirrorAttributes;
+    }
+
+    public void setVolumeMirrorAttributes(MirrorAttributes volumeMirrorAttributes) {
+        this.volumeMirrorAttributes = volumeMirrorAttributes;
+    }
+
+    public SecurityAttributes getVolumeSecurityAttributes() {
+        return volumeSecurityAttributes;
+    }
+
+    public void setVolumeSecurityAttributes(SecurityAttributes volumeSecurityAttributes) {
+        this.volumeSecurityAttributes = volumeSecurityAttributes;
     }
 }
