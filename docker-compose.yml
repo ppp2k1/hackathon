@@ -30,6 +30,14 @@ services:
     networks:
       - server-net
 
+  vmware-service:
+    image: vmware-service
+    build: ./vmware-service
+    container_name: vmware-service
+    ports:
+      - 9999:9999
+    networks:
+      - server-net
 
 networks:
   server-net:
