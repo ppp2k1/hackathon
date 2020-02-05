@@ -1,5 +1,6 @@
 package com.netapp.monitoring;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.netapp.monitoring.Cluster;
@@ -7,10 +8,7 @@ import com.netapp.monitoring.Vserver;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -93,7 +91,15 @@ public class DataFetcherFactory {
     }
 
     private VmWare getVmWareByAPI(String vmName) {
-        ResponseEntity<String> response = getRestTemplate().getForEntity("http://localhost:9999/vmware/config?vmName="+vmName, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ArrayList<MediaType> list = new ArrayList<>();
+        list.add(MediaType.APPLICATION_JSON);
+        headers.setAccept(list);
+        HttpEntity<String> request =
+                new HttpEntity<String>("", headers);
+        ResponseEntity<String> response = getRestTemplate().exchange("http://localhost:9999/vmware/config?vmName="+vmName,
+                HttpMethod.GET, request, String.class);
         if(response.getStatusCode() != HttpStatus.OK){
             return null;
         }
@@ -108,8 +114,70 @@ public class DataFetcherFactory {
     }
 
     public Ontap getOntap(String path){
+        Ontap ontap = null;
+        try {
+            RestTemplate rt = getRestTemplate();
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            String jsonBody = "{\n" +
+                    "    \"zapiRequest\":\"volume-get-iter\",\n" +
+                    "    \"queryParams\":{\"volume-id-attributes\":{\"junction-path\":\"/Test_W1\"}}\n" +
+                    "}";
+
+            HttpEntity<String> request =
+                    new HttpEntity<String>(jsonBody, headers);
+            ResponseEntity<String> res = rt.postForEntity("http://localhost:5555/execute/zapi", request, String.class);
+            if(res.getStatusCode() != HttpStatus.OK) {
+                return null;
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readTree(res.getBody());
+
+            ontap = converJSONtoOntap(node);
+
+            ontap.setPath(path);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return ontap;
+    }
+
+    private Ontap converJSONtoOntap(JsonNode node){
         Ontap ontap = new Ontap();
-        ontap.setPath(path);
+        JsonNode res = node.get(0);
+
+        boolean encrypt = res.get("encrypt").asBoolean();
+        ontap.setEncrypt(encrypt);
+
+        JsonNode antivirus = res.get("volumeAntivirusAttributes");
+        String onAccessPolicy = antivirus.get("onAccessPolicy").asText();
+        ontap.setVolumeAntivirusAttributes(new AntivirusAttributes(onAccessPolicy));
+
+        JsonNode mirrorAttrsNode = res.get("volumeMirrorAttributes");
+        MirrorAttributes mirrorAttributes = new MirrorAttributes();
+        mirrorAttributes.setDataProtectionMirror(mirrorAttrsNode.get("dataProtectionMirror").asBoolean());
+        mirrorAttributes.setLoadSharingMirror(mirrorAttrsNode.get("loadSharingMirror").asBoolean());
+        mirrorAttributes.setMoveMirror(mirrorAttrsNode.get("moveMirror").asBoolean());
+        mirrorAttributes.setReplicaVolume(mirrorAttrsNode.get("replicaVolume").asBoolean());
+        mirrorAttributes.setSnapmirrorSource(mirrorAttrsNode.get("snapmirrorSource").asText());
+        mirrorAttributes.setMirrorTransferInProgress(mirrorAttrsNode.get("mirrorTransferInProgress").asBoolean());
+        mirrorAttributes.setRedirectSnapshotId(mirrorAttrsNode.get("redirectSnapshotId").asLong());
+        ontap.setVolumeMirrorAttributes(mirrorAttributes);
+
+        JsonNode securityAttrsNode = res.get("volumeSecurityAttributes");
+        String style = securityAttrsNode.get("style").asText();
+
+        JsonNode unixAttrsNode = securityAttrsNode.get("volumeSecurityUnixAttributes");
+        SecurityUnixAttributes unixAttributes = new SecurityUnixAttributes();
+        unixAttributes.setGroupId(unixAttrsNode.get("groupId").asText());
+        unixAttributes.setPermissions(unixAttrsNode.get("permissions").asLong());
+        unixAttributes.setUserId(unixAttrsNode.get("userId").asText());
+
+        SecurityAttributes securityAttributes = new SecurityAttributes(style, unixAttributes);
+        ontap.setVolumeSecurityAttributes(securityAttributes);
+
         return ontap;
     }
 }

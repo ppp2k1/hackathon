@@ -20,6 +20,8 @@
 
 `3. configuration-service 8888`
 
+`4. zapi-service 5555`
+
 
 Order of initiaition of services:
 service-registery -> testservice -> testclient

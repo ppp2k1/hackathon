@@ -30,6 +30,23 @@ services:
     networks:
       - server-net
 
+  vmware-service:
+    image: vmware-service
+    build: ./vmware-service
+    container_name: vmware-service
+    ports:
+      - 9999:9999
+    networks:
+      - server-net
+      
+  zapi-service:
+    image: zapi-service
+    build: ./zapi-service
+    container_name: zapi-service
+    ports:
+      - 5555:5555
+    networks:
+      - server-net
 
 networks:
   server-net:
