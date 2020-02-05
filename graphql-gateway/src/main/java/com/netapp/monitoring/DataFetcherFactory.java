@@ -98,7 +98,7 @@ public class DataFetcherFactory {
         headers.setAccept(list);
         HttpEntity<String> request =
                 new HttpEntity<String>("", headers);
-        ResponseEntity<String> response = getRestTemplate().exchange("http://localhost:9999/vmware/config?vmName="+vmName,
+        ResponseEntity<String> response = getRestTemplate().exchange("http://vmware-service:9999/vmware/config?vmName="+vmName,
                 HttpMethod.GET, request, String.class);
         if(response.getStatusCode() != HttpStatus.OK){
             return null;
@@ -128,7 +128,7 @@ public class DataFetcherFactory {
 
             HttpEntity<String> request =
                     new HttpEntity<String>(jsonBody, headers);
-            ResponseEntity<String> res = rt.postForEntity("http://localhost:5555/execute/zapi", request, String.class);
+            ResponseEntity<String> res = rt.postForEntity("http://zapi-service:5555/execute/zapi", request, String.class);
             if(res.getStatusCode() != HttpStatus.OK) {
                 return null;
             }
