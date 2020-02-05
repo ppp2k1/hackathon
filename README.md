@@ -1,4 +1,25 @@
-# hackathon
+# Security monitoring services exposed via GraphQL gateway
+
+
+**To build** 
+
+`1. git clone `
+
+`2. gradlew.bat clean`
+
+`3. gradlew.bat`
+
+**To start the images**
+`docker-compose up`
+
+**Containers and ports**
+
+`1. service-registry 6666`
+
+`2. graphql-gateway 7777`
+
+`3. configuration-service 8888`
+
 
 Order of initiaition of services:
 service-registery -> testservice -> testclient
@@ -26,9 +47,4 @@ To make an existing service discoverable
 
 For API gateway there can be some differences as per reading but for other bussiness services this should be fine.
 
-**To build Docker Images** 
-`gradlew.bat :buildDockerImages`
-
-**To run Docker Image**s
-`docker-compose up`
 
