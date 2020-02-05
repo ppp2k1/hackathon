@@ -14,7 +14,7 @@
 
 **Containers and ports**
 
-`1. service-registry 6666`
+`1. service-registry 8761`
 
 `2. graphql-gateway 7777`
 

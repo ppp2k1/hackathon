@@ -1,61 +1,61 @@
 package com.netapp.monitoring;
 
 public class VmWare {
-    String id;
-    String ip;
-    String name;
-    Boolean firewall;
-    String path;
+    Long id;
+    String vmName;
+    String ipAddress;
+    String firewallOn;
+    //String path;
 
     public VmWare(){
 
     }
 
-    public VmWare(String id, String ip, String name, Boolean firewall, String path) {
+    public VmWare(Long id, String ipAddress, String name, String firewall, String path) {
         this.id = id;
-        this.ip = ip;
-        this.name = name;
-        this.firewall = firewall;
-        this.path = path;
+        this.ipAddress = ipAddress;
+        this.vmName = name;
+        this.firewallOn = firewall;
+        //this.path = path;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getIp() {
-        return ip;
+    public String getIpAddress() {
+        return ipAddress;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
-    public String getName() {
-        return name;
+    public String getVmName() {
+        return vmName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVmName(String name) {
+        this.vmName = name;
     }
 
-    public Boolean getFirewall() {
-        return firewall;
+    public String getFirewallOn() {
+        return firewallOn;
     }
 
-    public void setFirewall(Boolean firewall) {
-        this.firewall = firewall;
+    public void setFirewallOn(String firewallOn) {
+        this.firewallOn = firewallOn;
     }
 
-    public String getPath() {
+    /*public String getPath() {
         return path;
     }
 
     public void setPath(String path) {
         this.path = path;
     }
-}
+*/}

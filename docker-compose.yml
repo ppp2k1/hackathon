@@ -26,7 +26,7 @@ services:
     build: ./service-registry
     container_name: service-registry
     ports:
-      - 6666:6666
+      - 8761:8761
     networks:
       - server-net
 

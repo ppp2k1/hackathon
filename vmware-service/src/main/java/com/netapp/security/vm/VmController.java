@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/vmware/")
 public class VmController {
 
-    @Autowired
+    /*@Autowired
     private VmRepository vmRepository;
 
     @GetMapping("/vms")
@@ -28,17 +28,21 @@ public class VmController {
                         .findById(vmId)
                         .orElseThrow(() -> new ResourceNotFoundException("vm not found."));
         return ResponseEntity.ok().body(vm);
-    }
+    }*/
 
     @GetMapping("/config")
     public ResponseEntity<Vm> getVmsByName(@RequestParam(value= "vmName") String vmName)  {
-        Vm vm = vmRepository.findByVmName(vmName);
+        Vm vm = new Vm();//vmRepository.findByVmName(vmName);
+        vm.setId(1);
+        vm.setIpAddress("1.1.1.1");
+        vm.setVmName(vmName);
+        vm.setFirewallOn("yes");
         return ResponseEntity.ok().body(vm);
     }
 
-    @PostMapping("/vms")
+    /*@PostMapping("/vms")
     public Vm createVm(@Valid @RequestBody Vm vm) {
         return vmRepository.save(vm);
-    }
+    }*/
 
 }

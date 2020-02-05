@@ -6,6 +6,7 @@ import com.netapp.monitoring.Cluster;
 import com.netapp.monitoring.Vserver;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 @Component
 public class DataFetcherFactory {
 
+    public RestTemplate getRestTemplate(){
+        return  new RestTemplate();
+    }
 
     public DataFetcher getClusterByKeyDataFetcher() {
 
@@ -45,8 +49,7 @@ public class DataFetcherFactory {
     }
 
     public TestUser getClusterByName(){
-        RestTemplate template = new RestTemplate();
-        ResponseEntity<String> response = template.getForEntity("https://api.github.com/users/umasree-v", String.class);
+        ResponseEntity<String> response = getRestTemplate().getForEntity("https://api.github.com/users/umasree-v", String.class);
         if(response.getStatusCode() != HttpStatus.OK){
             return null;
         }
@@ -65,7 +68,6 @@ public class DataFetcherFactory {
             @Override
             public Object get(DataFetchingEnvironment environment) throws Exception {
                 String name = environment.getArgument("name");
-                getClusterByName();
                 SecurityConfig config = new SecurityConfig();
                 config.setName(name);
                 return config;
@@ -79,32 +81,35 @@ public class DataFetcherFactory {
             public Object get(DataFetchingEnvironment environment) throws Exception {
                 SecurityConfig config = environment.getSource();
                 String vmName = config.getName();
-                VmWare vmWare = new VmWare();
-                vmWare.setName(vmName);
+
+                VmWare vmWare = getVmWareByAPI(vmName);
+                vmWare.setVmName(vmName);
                 String path = "/uma";
-                vmWare.setPath(path);
+                //vmWare.setPath(path);
                 config.setOntap(getOntap("/u"));
                 return vmWare;
             }
         };
     }
 
+    private VmWare getVmWareByAPI(String vmName) {
+        ResponseEntity<String> response = getRestTemplate().getForEntity("http://localhost:9999/vmware/config?vmName="+vmName, String.class);
+        if(response.getStatusCode() != HttpStatus.OK){
+            return null;
+        }
+        String res = response.getBody();
+        VmWare vmWare = null;
+        try {
+            vmWare = new ObjectMapper().readValue(res, VmWare.class);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return  vmWare;
+    }
+
     public Ontap getOntap(String path){
         Ontap ontap = new Ontap();
         ontap.setPath(path);
         return ontap;
-    }
-
-    public DataFetcher getOntapByPath(){
-        return new DataFetcher() {
-            @Override
-            public Object get(DataFetchingEnvironment environment) throws Exception {
-                SecurityConfig config = environment.getSource();
-                String path = config.getVmWare().getPath();
-                Ontap ontap = new Ontap();
-                ontap.setPath(path);
-                return ontap;
-            }
-        };
     }
 }

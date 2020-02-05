@@ -30,10 +30,10 @@ type SecurityConfig {
 }
 
 type VmWare {
-    id: String!
-    ip: String!
-    name: String!
-    firewall: Boolean
+    id: Long!
+    ipAddress: String!
+    vmName: String!
+    firewallOn: String!
     path: String!
 }
 

@@ -1,28 +1,28 @@
 package com.netapp.security.vm;
 
-import org.hibernate.annotations.CreationTimestamp;
+/*import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import javax.persistence.*;
+import javax.persistence.*;*/
 import java.util.Date;
 
-@Entity
+/*@Entity
 //@NamedQuery(name = "Vm.findByName", query = "SELECT id FROM vm.vms WHERE vmname = ?1")
 @Table(name = "vms")
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)*/
 public class Vm {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   /* @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)*/
     private long id;
 
-    @Column(name = "vmname", nullable = false)
+    /*@Column(name = "vmname", nullable = false)*/
     private String vmName;
 
-    @Column(name = "ip_address", nullable = false)
+    /*@Column(name = "ip_address", nullable = false)*/
     private String ipAddress;
 
-    @Column(name = "firewall_on", nullable = false)
+    /*@Column(name = "firewall_on", nullable = false)*/
     private String firewallOn;
 
     public long getId() {
