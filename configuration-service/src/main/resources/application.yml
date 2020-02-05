@@ -1,9 +1,14 @@
-server.port: 8888
+server:
+  port: 8888
+
+management:
+  context-path: /admin
 
 spring:
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/ppp2k1/hackathon/tree/master/config
-          skipSslValidation: true
+          uri: https://github.com/ppp2k1/hackathon-git-repo.git
+          basedir: target/config
+
