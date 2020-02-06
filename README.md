@@ -29,6 +29,7 @@
 `Configuration Serivce`
 
 https://github.com/ppp2k1/hackathon-git-repo/blob/master/application.properties
+
 http://localhost:8888/admin/env
 
 
@@ -41,11 +42,14 @@ GET http://localhost:9999/vmware/config?vmName=vm-01
 
 `ONTAP Serivce`
 http://localhost:5555/ontap/config?path=10.193.48.51:/Test_W1
+
 http://localhost:5555/ontap/cluster?name=10.193.48.51
+
 http://localhost:5555/ontap/vserver?name=azure-svm-1
 
 
 `GraphQL gateway`
+
 POST http://localhost:7777/graphql
 
 
