@@ -10,6 +10,8 @@ import java.util.Date;
 //@NamedQuery(name = "Vm.findByName", query = "SELECT id FROM vm.vms WHERE vmname = ?1")
 @Table(name = "vms")
 @EntityListeners(AuditingEntityListener.class)*/
+
+import java.util.*;
 public class Vm {
 
    /* @Id
@@ -22,23 +24,12 @@ public class Vm {
     /*@Column(name = "ip_address", nullable = false)*/
     private String ipAddress;
 
-    /*@Column(name = "firewall_on", nullable = false)*/
-    private String firewallOn;
+    public Host host;
+    public Datastore datastore;
+    public List<Vmdk>  vmdk;
 
     public long getId() {
         return id;
-    }
-
-    public void setVmName(String vmName) {
-        this.vmName = vmName;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public void setFirewallOn(String firewallOn) {
-        this.firewallOn = firewallOn;
     }
 
     public String getVmName() {
@@ -49,10 +40,50 @@ public class Vm {
         return ipAddress;
     }
 
-    public String getFirewallOn() {
-        return firewallOn;
+    public Host getHost() {
+        return host;
     }
+
+    public Datastore getDatastore() {
+        return datastore;
+    }
+
+
+    public List<Vmdk> getVmdk() {
+        return vmdk;
+    }
+
+    public Vm(long id, String vmName, String ipAddress, Host host, Datastore datastore, List<Vmdk> vmdk) {
+        this.id = id;
+        this.vmName = vmName;
+        this.ipAddress = ipAddress;
+        this.host = host;
+        this.datastore = datastore;
+        this.vmdk = vmdk;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setVmdk(List<Vmdk> vmdk) {
+        this.vmdk = vmdk;
+    }
+
+    public void setVmName(String vmName) {
+        this.vmName = vmName;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    public void setDatastore(Datastore datastore) {
+        this.datastore = datastore;
+    }
+
 }
