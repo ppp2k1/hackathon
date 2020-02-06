@@ -24,7 +24,7 @@
 
 `5. vmware-service 9999`
 
-**To Test **
+**To Test**
 
 `Configuration Serivce`
 
