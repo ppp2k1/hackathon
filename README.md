@@ -35,18 +35,21 @@ http://localhost:8888/admin/env
 
 
 * `Service Registry`
+
 http://localhost:8761/
 
 * `VMware Service`
+
 GET http://localhost:9999/vmware/config?vmName=vm-01
 
 
 * `ONTAP Serivce`
-** GET http://localhost:5555/ontap/config?path=10.193.48.51:/Test_W1
 
-** GET http://localhost:5555/ontap/cluster?name=10.193.48.51
+GET http://localhost:5555/ontap/config?path=10.193.48.51:/Test_W1
 
-** GET http://localhost:5555/ontap/vserver?name=azure-svm-1
+GET http://localhost:5555/ontap/cluster?name=10.193.48.51
+
+GET http://localhost:5555/ontap/vserver?name=azure-svm-1
 
 
 * `GraphQL gateway`
