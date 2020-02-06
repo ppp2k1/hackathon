@@ -40,9 +40,9 @@ services:
       - server-net
       
   zapi-service:
-    image: zapi-service
-    build: ./zapi-service
-    container_name: zapi-service
+    image: ontap-service
+    build: ./ontap-service
+    container_name: ontap-service
     ports:
       - 5555:5555
     networks:
