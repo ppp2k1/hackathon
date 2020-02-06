@@ -6,5 +6,5 @@ include 'configuration-service'
 include 'testservice'
 include 'testclient'
 include 'vmware-service'
-include 'zapi-service'
+include 'ontap-service'
 
