@@ -33,7 +33,7 @@ public class ZapiController {
         return ResponseEntity.ok(o);
     }
 
-    @GetMapping("/ontap/cofig")
+    @GetMapping("/ontap/config")
     public Object getNfsShare(@RequestParam String path){
         String[] arr = path.split(":");
         String cl = arr[0];
