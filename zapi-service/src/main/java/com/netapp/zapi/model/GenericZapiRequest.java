@@ -9,6 +9,8 @@ public class GenericZapiRequest {
 
     private String zapiObject;
 
+    private String vserverTunnel;
+
     private List<String> desiredParameters;
 
     private Map<String, Object> queryParams;
@@ -53,5 +55,13 @@ public class GenericZapiRequest {
 
     public void setInputParams(Map<String, Object> inputParams) {
         this.inputParams = inputParams;
+    }
+
+    public String getVserverTunnel() {
+        return vserverTunnel;
+    }
+
+    public void setVserverTunnel(String vserverTunnel) {
+        this.vserverTunnel = vserverTunnel;
     }
 }
