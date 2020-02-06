@@ -44,7 +44,6 @@ public class ZapiExecutorService {
                 protocol)).getZAPIConnection();
     }
 
-
     public Object executeZapi(GenericZapiRequest genericZapiRequest){
         if(genericZapiRequest != null && genericZapiRequest.getZapiRequest() != null) {
             try {
@@ -95,6 +94,10 @@ public class ZapiExecutorService {
                         password,
                         port,
                         protocol)).getZAPIConnection();
+
+                if(genericZapiRequest.getVserverTunnel() != null){
+                    zapiConnection.withVserverName(genericZapiRequest.getVserverTunnel());
+                }
 
                 if(GetIterAPIRequest.class.isAssignableFrom(c)) {
                     List<Object> apiResponse = zapiConnection.list((GetIterAPIRequest<?, Object>) zapiRequest);
