@@ -79,7 +79,7 @@ public class DataFetcherFactory {
             RestTemplate rt = getRestTemplate();
 
             String configPath= host+":"+path;
-            ResponseEntity<String> res = rt.getForEntity("http://zapi-service:5555//ontap/cofig?path="+configPath, String.class);
+            ResponseEntity<String> res = rt.getForEntity("http://zapi-service:5555//ontap/config?path="+configPath, String.class);
             if(res.getStatusCode() != HttpStatus.OK) {
                 return null;
             }
