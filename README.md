@@ -56,7 +56,7 @@ GET http://localhost:5555/ontap/vserver?name=azure-svm-1
 
 POST http://localhost:7777/graphql
 
-
+<pre>
 {
     SecurityConfigByVm(name: "vm-001") {
         name
@@ -136,4 +136,4 @@ POST http://localhost:7777/graphql
 }
 
 
-
+</pre>
