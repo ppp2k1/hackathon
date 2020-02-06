@@ -1,26 +1,5 @@
 type Query {
-    ClusterByKey(key: String): Cluster
-    VserverByKey(key: String): Vserver
-    VolumeByKey(key: String): Volume
     SecurityConfigByVm(name: String): SecurityConfig
-}
-
-
-type Cluster {
-    key: String!
-    name: String!
-    vservers: [Vserver]
-}
-
-type Vserver {
-    key: String!
-    name: String!
-    volumes: [Volume]
-}
-
-type Volume {
-    key: String!
-    name: String!
 }
 
 type SecurityConfig {
@@ -33,31 +12,54 @@ type VmWare {
     id: Long!
     ipAddress: String!
     vmName: String!
+    host: Host
+    datastore: Datastore
+    vmdk: [Vmdk]
+}
+
+type Host {
+    ipAdd: String!
     firewallOn: String!
-    path: String!
+    firewallLoaded: String!
+    firewallDefaultAction: String!
+}
+
+type Datastore {
+    type: String!
+    name: String!
+    url: String!
+    remoteHost: String!
+    remotePath: String!
+}
+
+type Vmdk {
+    vmdkName: String!
+    vmdkFilePath: String!
+    datastoreName: String!
 }
 
 type Ontap {
     ip: String!
-    path: String!
-    encrypt: Boolean
+    volume: Volume
+    vserver: Vserver
+    cluster: Cluster
+}
+
+type Volume {
+    softwareEncrypt: Boolean
+    hardwareEncrypt: Boolean
     volumeAntivirusAttributes: AntivirusAttributes
-    volumeMirrorAttributes: MirrorAttributes
+    volumeExportAttributes: ExportAttributes
     volumeSecurityAttributes: SecurityAttributes
+    volumeIdAttributes: IdAttributes
 }
 
 type AntivirusAttributes {
     onAccessPolicy: String!
 }
 
-type MirrorAttributes {
-    dataProtectionMirror: Boolean
-    loadSharingMirror: Boolean
-    moveMirror: Boolean
-    replicaVolume: Boolean
-    snapmirrorSource: String!
-    mirrorTransferInProgress: Boolean
-    redirectSnapshotId: Long
+type ExportAttributes {
+    policy: String!
 }
 
 type SecurityAttributes {
@@ -69,4 +71,35 @@ type SecurityUnixAttributes {
     groupId: String!
     permissions: Long
     userId: String!
+}
+
+type IdAttributes{
+    uuid: String!
+    name: String!
+    node: String!
+    junctionPath: String!
+    type: String!
+    style: String!
+    styleExtended: String!
+    containingAggregateName: String!
+    containingAggregateUuid: String!
+    owningVserverName: String!
+    aggrList: [String]
+}
+
+type Vserver {
+    loginBannerConfigured: Boolean
+    sshCiphersSecured: Boolean
+    cifsLdapSigned: Boolean
+    CifsLdapSealed: Boolean
+    nfsKerberoseEnabled: Boolean
+    iscsiChapEnabled: Boolean
+}
+
+type Cluster {
+    telnetEnabled: Boolean
+    sshCiphersSecured: Boolean
+    asupHttpsConfigured: Boolean
+    fipsEnabled: Boolean
+    loginBannerConfigured: Boolean
 }

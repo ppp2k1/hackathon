@@ -1,4 +1,7 @@
-package com.netapp.monitoring;
+package com.netapp.monitoring.model;
+
+import com.netapp.monitoring.model.Ontap;
+import com.netapp.monitoring.model.VmWare;
 
 public class SecurityConfig {
     String name;

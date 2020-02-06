@@ -1,4 +1,4 @@
-package com.netapp.monitoring;
+package com.netapp.monitoring.model;
 
 public class AntivirusAttributes {
     private String onAccessPolicy;

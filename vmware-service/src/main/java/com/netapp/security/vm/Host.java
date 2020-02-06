@@ -2,9 +2,9 @@ package com.netapp.security.vm;
 
 public class Host {
     private String ipAdd;
-    private String firewall_on;
-    private String firewall_loaded;
-    private String firewall_default_action;
+    private String firewallOn;
+    private String firewallLoaded;
+    private String firewallDefaultAction;
 
     public String getIpAdd() {
         return ipAdd;
@@ -14,35 +14,35 @@ public class Host {
         this.ipAdd = ipAdd;
     }
 
-    public void setFirewall_on(String firewall_on) {
-        this.firewall_on = firewall_on;
+    public void setFirewallOn(String firewallOn) {
+        this.firewallOn = firewallOn;
     }
 
-    public void setFirewall_loaded(String firewall_loaded) {
-        this.firewall_loaded = firewall_loaded;
+    public void setFirewallLoaded(String firewallLoaded) {
+        this.firewallLoaded = firewallLoaded;
     }
 
-    public String getFirewall_on() {
-        return firewall_on;
+    public String getFirewallOn() {
+        return firewallOn;
     }
 
-    public void setFirewall_default_action(String firewall_default_action) {
-        this.firewall_default_action = firewall_default_action;
+    public void setFirewallDefaultAction(String firewallDefaultAction) {
+        this.firewallDefaultAction = firewallDefaultAction;
     }
 
-    public String getFirewall_default_action() {
-        return firewall_default_action;
+    public String getFirewallDefaultAction() {
+        return firewallDefaultAction;
     }
 
-    public Host(String ipAdd, String firewall_on, String firewall_loaded, String firewall_default_action) {
+    public Host(String ipAdd, String firewallOn, String firewallLoaded, String firewallDefaultAction) {
         this.ipAdd = ipAdd;
-        this.firewall_on = firewall_on;
-        this.firewall_loaded = firewall_loaded;
-        this.firewall_default_action = firewall_default_action;
+        this.firewallOn = firewallOn;
+        this.firewallLoaded = firewallLoaded;
+        this.firewallDefaultAction = firewallDefaultAction;
     }
 
-    public String getFirewall_loaded() {
-        return firewall_loaded;
+    public String getFirewallLoaded() {
+        return firewallLoaded;
     }
 
 }

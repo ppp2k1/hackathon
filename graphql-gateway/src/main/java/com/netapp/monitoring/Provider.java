@@ -44,10 +44,6 @@ public class Provider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("ClusterByKey", dataFetcherFactory.getClusterByKeyDataFetcher()))
-                .type(newTypeWiring("Cluster")
-                        .dataFetcher("vservers", dataFetcherFactory.getVserversForClusterDataFetcher()))
-                .type(newTypeWiring("Query")
                          .dataFetcher("SecurityConfigByVm", dataFetcherFactory.getSecurityConfigByName()))
                 .type(newTypeWiring("SecurityConfig")
                          .dataFetcher("vmware", dataFetcherFactory.getVmWareByVmName()))

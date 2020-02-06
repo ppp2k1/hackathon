@@ -1,22 +1,23 @@
-package com.netapp.monitoring;
+package com.netapp.monitoring.model;
+
+import java.util.List;
 
 public class VmWare {
     Long id;
     String vmName;
     String ipAddress;
-    String firewallOn;
-    //String path;
+    public Host host;
+    public Datastore datastore;
+    public List<Vmdk> vmdk;
 
     public VmWare(){
 
     }
 
-    public VmWare(Long id, String ipAddress, String name, String firewall, String path) {
+    public VmWare(Long id, String ipAddress, String name) {
         this.id = id;
         this.ipAddress = ipAddress;
         this.vmName = name;
-        this.firewallOn = firewall;
-        //this.path = path;
     }
 
     public Long getId() {
@@ -43,19 +44,27 @@ public class VmWare {
         this.vmName = name;
     }
 
-    public String getFirewallOn() {
-        return firewallOn;
+    public Host getHost() {
+        return host;
     }
 
-    public void setFirewallOn(String firewallOn) {
-        this.firewallOn = firewallOn;
+    public void setHost(Host host) {
+        this.host = host;
     }
 
-    /*public String getPath() {
-        return path;
+    public Datastore getDatastore() {
+        return datastore;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setDatastore(Datastore datastore) {
+        this.datastore = datastore;
     }
-*/}
+
+    public List<Vmdk> getVmdk() {
+        return vmdk;
+    }
+
+    public void setVmdk(List<Vmdk> vmdk) {
+        this.vmdk = vmdk;
+    }
+}
