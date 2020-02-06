@@ -1,23 +1,26 @@
-# Read Me First
-The following was discovered as part of building this project:
+Order of initiaition of services:
+service-registery -> testservice -> testclient
 
-* The original package name 'com.netapp.service-registery' is invalid and this project uses 'com.netapp.serviceregistery' instead.
+verify eureka:
+Open Eureka monitor: http://<deployed_host_IP>:8761/
 
-# Getting Started
+verify testservice(registery):
+Run: curl http://<deployed_host_IP>:8081/cluster
+Expected: {"id":5,"name":"HackathonDemo"}
+&
+there should be an entry called ONTAP-SERVICE in eureka UI.
 
-### Reference Documentation
-For further reference, please consider the following sections:
+verify testclient(discovery):
+Run: curl http://<deployed_host_IP>:8082/vmware
+Expected: {"id":3,"name":"HackthonVMware","cluster":{"name":"HackathonDemo","id":5}}
+&
+there should be an entry called VMWARE-SERVICE in eureka UI.
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.2.4.RELEASE/gradle-plugin/reference/html/)
 
-### Guides
-The following guides illustrate how to use some features concretely:
+To make an existing service discoverable 
+1) add dependency of eureka from testclient/build.gradle
+2) copy properties from application.properties of testclient
+3) Add RestTemplate part in case your service is consuming other service or to be lazy add it always.
 
-* [Service Registration and Discovery](https://spring.io/guides/gs/service-registration-and-discovery/)
-
-### Additional Links
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+For API gateway there can be some differences as per reading but for other bussiness services this should be fine.
 
